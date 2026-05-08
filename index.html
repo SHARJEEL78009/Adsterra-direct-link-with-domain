@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Videy Player</title>
+<title>Video Player</title>
 
 <style>
 body{
@@ -28,14 +28,14 @@ margin:20px auto;
 border-radius:16px;
 overflow:hidden;
 box-shadow:0 2px 16px rgba(0,0,0,.08);
+background:black;
 }
 
 video{
 width:100%;
 height:auto;
-background:#000;
+display:block;
 }
-
 .download-btn{
 display:inline-block;
 margin:15px auto;
@@ -48,7 +48,6 @@ font-weight:bold;
 font-size:16px;
 }
 </style>
-
 </head>
 
 <body>
@@ -56,39 +55,40 @@ font-size:16px;
 <div class="videy-header">Videy</div>
 
 <div class="videy-box">
-  <video id="v" controls autoplay muted playsinline></video>
+  <video id="v" controls playsinline muted></video>
 </div>
 
-<a class="download-btn" id="dl" href="#" target="_blank">DOWNLOAD</a>
+<a class="download-btn" id="dl" target="_blank">DOWNLOAD</a>
 
-<!-- ADSTERRA -->
-<script async="async" data-cfasync="false" src="https://awkwardmonopoly.com/1d62a3343155d79f54ba49ce80159176/invoke.js"></script>
-<div id="container-1d62a3343155d79f54ba49ce80159176"></div>
-
-<script src="https://awkwardmonopoly.com/4f/ed/a8/4feda8a2a4dcb0b20ecf497dcef93bb8.js"></script>
-
-<!-- 🔥 JS VIDEO LOADER (DIRECT MP4 SYSTEM) -->
+<!-- 🔥 FIXED VIDEO LOADER -->
 <script>
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
 
-  // 👉 yahan apna MP4 link set karo
   const videoURL = "https://cdn.videiyy.cc/CKVMDhdY1.mp4";
 
   const vid = document.getElementById("v");
 
-  vid.src = videoURL;
+  // 🔥 FORCE CLEAN LOAD (important fix)
+  vid.pause();
+  vid.removeAttribute("src");
   vid.load();
-  vid.muted = true;
 
-  setTimeout(()=>{
+  vid.src = videoURL;
+  document.getElementById("dl").href = videoURL;
+
+  // 🔥 PROPER EVENT HANDLING
+  vid.addEventListener("canplay", function(){
     vid.play().catch(err=>{
       console.log("Autoplay blocked:", err);
     });
-  },300);
+  });
 
-  document.getElementById("dl").href = videoURL;
+  vid.addEventListener("error", function(){
+    console.log("VIDEO FAILED:", videoURL);
+    alert("Video load error — check CDN file");
+  });
 
-})();
+});
 </script>
 
 </body>
