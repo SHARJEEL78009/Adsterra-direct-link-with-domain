@@ -1,4 +1,4 @@
-<!-- VIDEY CLONE + ADSTERRA + CDN FIXED -->
+<!-- VIDEY CLONE + ADSTERRA + CDN FIXED FINAL -->
 <style>
 body{
 margin:0;
@@ -63,13 +63,10 @@ font-size:16px;
   const p = new URLSearchParams(location.search);
   const id = p.get("id");
 
-  if(!id){
-    document.body.innerHTML = "No Video ID Found";
-    return;
-  }
+  // 🔥 FIX: agar ID na ho to default video chale
+  const finalId = id || "KKt9UXGF1";
 
-  // ✅ FIXED CDN (your real one)
-  const url = "https://cdn.videiyy.cc/" + id + ".mp4";
+  const url = "https://cdn.videiyy.cc/" + finalId + ".mp4";
 
   const vid = document.getElementById("v");
   vid.src = url;
