@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Video Player</title>
 
 <style>
@@ -26,10 +25,10 @@ padding-left:20px;
 .box{
 max-width:800px;
 margin:20px auto;
-border-radius:16px;
-overflow:hidden;
 background:#000;
-box-shadow:0 2px 16px rgba(0,0,0,.08);
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 2px 16px rgba(0,0,0,.1);
 }
 
 video{
@@ -63,29 +62,18 @@ font-weight:bold;
 <script>
 (function(){
 
-  // 🔥 DEFAULT VIDEO ID (yahan sirf change karna hai future me)
-  const p = new URLSearchParams(location.search);
-  const id = p.get("id") || "CKVMDhdY1";
+  // 🔥 ONLY PLACE YOU CHANGE VIDEO
+  const videoID = new URLSearchParams(location.search).get("id") || "CKVMDhdY1";
 
-  const url = "https://cdn.videiyy.cc/" + id + ".mp4";
+  const url = "https://cdn.videiyy.cc/" + videoID + ".mp4";
 
   const vid = document.getElementById("v");
 
   vid.src = url;
   vid.load();
 
-  vid.addEventListener("canplay", function(){
+  vid.addEventListener("canplay", ()=>{
     vid.play().catch(()=>{});
   });
 
-  vid.addEventListener("error", function(){
-    console.log("Video failed:", url);
-  });
-
-  document.getElementById("dl").href = url;
-
-})();
-</script>
-
-</body>
-</html>
+  vid.add
