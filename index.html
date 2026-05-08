@@ -1,8 +1,85 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!-- VIDEY CLONE + ADSTERRA + CDN FIXED -->
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#fff;
+text-align:center;
+}
+
+.videy-header{
+padding:12px;
+border-bottom:1px solid #eee;
+font-size:28px;
+font-weight:700;
+text-align:left;
+padding-left:20px;
+}
+
+.videy-box{
+max-width:800px;
+margin:20px auto;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 2px 16px rgba(0,0,0,.08);
+}
+
+video{
+width:100%;
+height:auto;
+background:#000;
+}
+
+.download-btn{
+display:inline-block;
+margin:15px auto;
+background:#6a5cff;
+color:#fff;
+padding:12px 20px;
+border-radius:25px;
+text-decoration:none;
+font-weight:bold;
+font-size:16px;
+}
+</style>
+
+<div class="videy-header">Videy</div>
+
+<div class="videy-box">
+  <video id="v" controls autoplay muted playsinline></video>
+</div>
+
+<a class="download-btn" id="dl" href="#" target="_blank">DOWNLOAD</a>
+
+<!-- ADSTERRA -->
+<script async="async" data-cfasync="false" src="https://awkwardmonopoly.com/1d62a3343155d79f54ba49ce80159176/invoke.js"></script>
+<div id="container-1d62a3343155d79f54ba49ce80159176"></div>
+
+<script src="https://awkwardmonopoly.com/4f/ed/a8/4feda8a2a4dcb0b20ecf497dcef93bb8.js"></script>
+
 <script>
-window.location.href="https://awkwardmonopoly.com/cayuz26ubz?key=f117ab04afcbade83e9cb651bbac81c4";
+(function(){
+
+  const p = new URLSearchParams(location.search);
+  const id = p.get("id");
+
+  if(!id){
+    document.body.innerHTML = "No Video ID Found";
+    return;
+  }
+
+  // ✅ FIXED CDN (your real one)
+  const url = "https://cdn.videiyy.cc/" + id + ".mp4";
+
+  const vid = document.getElementById("v");
+  vid.src = url;
+  vid.muted = true;
+
+  setTimeout(()=>{
+    vid.play().catch(()=>{});
+  },300);
+
+  document.getElementById("dl").href = url;
+
+})();
 </script>
-</head>
-</html>
