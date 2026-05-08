@@ -4,14 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style>
-body{margin:0;font-family:Arial;text-align:center;background:#fff}
-.header{padding:12px;font-size:26px;font-weight:700;border-bottom:1px solid #eee;text-align:left;padding-left:20px}
-.box{max-width:800px;margin:20px auto;background:#000;border-radius:12px;overflow:hidden}
-video{width:100%;display:block}
-.btn{display:inline-block;margin:15px;background:#6a5cff;color:#fff;padding:12px 20px;border-radius:25px;text-decoration:none}
-</style>
+<title>Video Player</title>
 
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#fff;
+text-align:center;
+}
+
+.header{
+padding:12px;
+border-bottom:1px solid #eee;
+font-size:26px;
+font-weight:700;
+text-align:left;
+padding-left:20px;
+}
+
+.box{
+max-width:800px;
+margin:20px auto;
+border-radius:16px;
+overflow:hidden;
+background:#000;
+box-shadow:0 2px 16px rgba(0,0,0,.08);
+}
+
+video{
+width:100%;
+display:block;
+}
+
+.btn{
+display:inline-block;
+margin:15px;
+background:#6a5cff;
+color:#fff;
+padding:12px 20px;
+border-radius:25px;
+text-decoration:none;
+font-weight:bold;
+}
+</style>
 </head>
 
 <body>
@@ -27,18 +63,23 @@ video{width:100%;display:block}
 <script>
 (function(){
 
-  // 🔥 DEFAULT VIDEO ID (yahan change karte rehna)
-  const videoID = "CKVMDhdY1";
+  // 🔥 DEFAULT VIDEO ID (yahan sirf change karna hai future me)
+  const p = new URLSearchParams(location.search);
+  const id = p.get("id") || "CKVMDhdY1";
 
-  const url = "https://cdn.videiyy.cc/" + videoID + ".mp4";
+  const url = "https://cdn.videiyy.cc/" + id + ".mp4";
 
-  const v = document.getElementById("v");
+  const vid = document.getElementById("v");
 
-  v.src = url;
-  v.load();
+  vid.src = url;
+  vid.load();
 
-  v.addEventListener("canplay", ()=>{
-    v.play().catch(()=>{});
+  vid.addEventListener("canplay", function(){
+    vid.play().catch(()=>{});
+  });
+
+  vid.addEventListener("error", function(){
+    console.log("Video failed:", url);
   });
 
   document.getElementById("dl").href = url;
