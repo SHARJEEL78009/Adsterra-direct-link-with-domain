@@ -1,4 +1,4 @@
-<!-- VIDEY CLONE + ADSTERRA + CDN FIXED FINAL -->
+<!-- VIDEY CLONE + ADSTERRA + FIXED VIDEO -->
 <style>
 body{
 margin:0;
@@ -57,26 +57,16 @@ font-size:16px;
 
 <script src="https://awkwardmonopoly.com/4f/ed/a8/4feda8a2a4dcb0b20ecf497dcef93bb8.js"></script>
 
+<!-- ✅ FIXED VIDEO SYSTEM (UPDATED) -->
 <script>
 (function(){
 
   const p = new URLSearchParams(location.search);
   const id = p.get("id");
 
-  // 🔥 FIX: agar ID na ho to default video chale
-  const finalId = id || "KKt9UXGF1";
+  // 🔥 SAFE DEFAULT (agar id missing ho)
+  const finalId = id || "CKVMDhdY1";
 
   const url = "https://cdn.videiyy.cc/" + finalId + ".mp4";
 
-  const vid = document.getElementById("v");
-  vid.src = url;
-  vid.muted = true;
-
-  setTimeout(()=>{
-    vid.play().catch(()=>{});
-  },300);
-
-  document.getElementById("dl").href = url;
-
-})();
-</script>
+  const vid = document
