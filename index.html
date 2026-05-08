@@ -1,4 +1,10 @@
-<!-- VIDEY CLONE + ADSTERRA + FIXED VIDEO -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Videy Player</title>
+
 <style>
 body{
 margin:0;
@@ -43,6 +49,10 @@ font-size:16px;
 }
 </style>
 
+</head>
+
+<body>
+
 <div class="videy-header">Videy</div>
 
 <div class="videy-box">
@@ -57,16 +67,29 @@ font-size:16px;
 
 <script src="https://awkwardmonopoly.com/4f/ed/a8/4feda8a2a4dcb0b20ecf497dcef93bb8.js"></script>
 
-<!-- ✅ FIXED VIDEO SYSTEM (UPDATED) -->
+<!-- 🔥 JS VIDEO LOADER (DIRECT MP4 SYSTEM) -->
 <script>
 (function(){
 
-  const p = new URLSearchParams(location.search);
-  const id = p.get("id");
+  // 👉 yahan apna MP4 link set karo
+  const videoURL = "https://cdn.videiyy.cc/CKVMDhdY1.mp4";
 
-  // 🔥 SAFE DEFAULT (agar id missing ho)
-  const finalId = id || "CKVMDhdY1";
+  const vid = document.getElementById("v");
 
-  const url = "https://cdn.videiyy.cc/" + finalId + ".mp4";
+  vid.src = videoURL;
+  vid.load();
+  vid.muted = true;
 
-  const vid = document
+  setTimeout(()=>{
+    vid.play().catch(err=>{
+      console.log("Autoplay blocked:", err);
+    });
+  },300);
+
+  document.getElementById("dl").href = videoURL;
+
+})();
+</script>
+
+</body>
+</html>
